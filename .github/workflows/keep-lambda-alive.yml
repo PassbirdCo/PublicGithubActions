@@ -28,7 +28,7 @@ jobs:
       - name: Ping lambda dev
         run: |
           curl --location --request POST 'https://api.dev.metakeep.xyz/v2/app/coin/balance' \
-            --header 'x-api-key: {{secrets.DEV_API_KEY}}' \
+            --header 'x-api-key: ${{secrets.DEV_API_KEY}}' \
             --header 'Content-Type: application/json' \
             --data-raw '{
                 "coin": {
