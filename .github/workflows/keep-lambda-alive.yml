@@ -43,4 +43,15 @@ jobs:
         run: curl --location --request GET 'https://api.dublin.metakeep.xyz/v2/app/list'
         
       - name: Ping lambda prod
-        run: curl --location --request GET 'https://api.metakeep.xyz/v2/app/list'
+        run: |
+          curl --location --request POST 'https://api.metakeep.xyz/v2/app/coin/balance' \
+            --header 'x-api-key: ${{secrets.PROD_API_KEY}}' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+                "coin": {
+                    "currency": "0xb512854561c6081358442939c32aca47561024ab"
+                },
+                "of": {
+                    "ethAddress": "0x09b80becbe709dd354b1363727514309d1ac3c7b"
+                }
+            }'
